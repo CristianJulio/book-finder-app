@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { setBooks } from '../books/bookSlice'
+import { selectTerm, setTerm } from '../header/headerSlice'
+import { setPage, setPageToGo } from '../pagination/paginationSlice'
 
 const HeaderStyled = styled.header`
   color: #243e36;
@@ -44,16 +46,17 @@ const Button = styled.button`
 
 const Header = () => {
   const dispatch = useDispatch()
-
-  const [term, setTerm] = useState('')
+  const term = useSelector(selectTerm)
 
   const handleChange = (e) => {
-    setTerm(e.target.value)
+    dispatch(setTerm(e.target.value))
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    dispatch(setBooks(term))
+    dispatch(setPage(1))
+    dispatch(setPageToGo(1))
+    dispatch(setBooks({ term }))
   }
   return (
     <HeaderStyled>

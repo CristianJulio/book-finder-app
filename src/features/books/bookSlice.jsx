@@ -3,8 +3,8 @@ import { fetchBooks } from './bookApi'
 
 export const setBooks = createAsyncThunk(
   'books/fetchBooks',
-  async (term) => {
-    const books = await fetchBooks(term)
+  async ({ term, page }) => {
+    const books = await fetchBooks(term, page)
     return books
   }
 )
