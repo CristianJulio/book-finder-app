@@ -44,11 +44,11 @@ const Enlace = styled.a`
   border-radius: 3px;
   color: #ffffff;
   display: block;
+  font-weight: 400;
   padding: 5px 8px;
   text-align: center;
   text-decoration: none;
   width: 90px;
-  font-weight: 400;
 `
 
 function Book ({ book }) {

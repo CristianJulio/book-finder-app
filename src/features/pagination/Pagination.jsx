@@ -72,14 +72,14 @@ const Button = styled.button`
 
 function Pagination () {
   const dispatch = useDispatch()
-  const { totalItems } = useSelector(selectBooks)
-  const status = useSelector(selectStatus)
-  const term = useSelector(selectTerm)
+  const books = useSelector(selectBooks)
+  const { totalItems } = books;
   const page = useSelector(selectPage)
   const pagetogo = useSelector(selectPageToGo)
-
+  const status = useSelector(selectStatus)
+  const term = useSelector(selectTerm)
+  
   if (!totalItems || status === 'loading') return null
-  console.log({ estado: !totalItems })
 
   let totalPages = Math.ceil(totalItems / 15) - 40
   if (totalPages < 1) totalPages = 1

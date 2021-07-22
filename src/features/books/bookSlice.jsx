@@ -12,7 +12,7 @@ export const setBooks = createAsyncThunk(
 export const bookSlice = createSlice({
   name: 'book',
   initialState: {
-    books: [],
+    books: {},
     status: 'idle'
   },
   reducers: {},

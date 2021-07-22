@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useSelector } from 'react-redux'
-import { selectBooks, selectStatus } from './bookSlice'
 import Book from './Book'
 import Spinner from '../spinner/Spinner'
+import { useSelector } from 'react-redux'
+import { selectBooks, selectStatus } from './bookSlice'
 
 const BookListStyled = styled.ul`
   display: grid;
@@ -20,14 +20,14 @@ const Message = styled.p`
 function BookList () {
   const status = useSelector(selectStatus)
   const books = useSelector(selectBooks)
-
-  if (books.totalItems === 0) return <Message>No results...</Message>
-
+  const { totalItems } = books
   const areBooksReady = Object.keys(books).length !== 0
+
+  if (!areBooksReady && status === 'idle') return <Message>Nothing to show...</Message>
+  if (totalItems === 0) return <Message>No results...</Message>
 
   return (
     <div className='wrapper'>
-      {!areBooksReady && status !== 'loading' && <Message>Nothing to show...</Message>}
       {status === 'loading' && <Spinner />}
       {status === 'idle' && areBooksReady && (
         <BookListStyled>
